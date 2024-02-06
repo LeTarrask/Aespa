@@ -79,14 +79,19 @@ class AespaBracketedCamera: AespaCoreCamera {
             fatalError("No available camera output.")
         }
         
+        let supportsRAW = !output.availableRawPhotoFileTypes.isEmpty
         // Checks if we can take ProRaw or Raw
         let query = output.isAppleProRAWEnabled ? { AVCapturePhotoOutput.isAppleProRAWPixelFormat($0) } :
         { AVCapturePhotoOutput.isBayerRAWPixelFormat($0) }
 
         // 0 means phone cannot take raw pictures
-        let rawFormatType = output.availableRawPhotoPixelFormatTypes.first(where: query) ?? 0
+        let rawFormatType = output.availableRawPhotoPixelFormatTypes.first(where: query) ?? output.availableRawPhotoPixelFormatTypes.first ?? 0
 
-        let processedFormat = [AVVideoCodecKey: AVVideoCodecType.hevc]
+        var processedFormat = [AVVideoCodecKey: AVVideoCodecType.jpeg]
+        if output.availablePhotoCodecTypes.contains(.hevc) {
+            // Device supports HEVC, set it for high-quality compressed images
+            processedFormat = [AVVideoCodecKey: AVVideoCodecType.hevc]
+        }
 
         for _ in 0..<batches {
             let bracketSettings = AVCapturePhotoBracketSettings(
