@@ -96,7 +96,9 @@ class AespaBracketedCamera: AespaCoreCamera {
         for _ in 0..<batches {
             let bracketSettings = AVCapturePhotoBracketSettings(
                 rawPixelFormatType: rawFormatType,
+                rawFileType: .dng,
                 processedFormat: processedFormat,
+                processedFileType: .heic,
                 bracketedSettings: Array(exposureSettings.prefix(3))
             )
             allSettings.append(bracketSettings)
