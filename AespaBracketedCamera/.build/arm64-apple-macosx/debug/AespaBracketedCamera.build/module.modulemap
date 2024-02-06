@@ -1,0 +1,4 @@
+module AespaBracketedCamera {
+    header "/Users/tarrask/Art Roubeaux/Swift/__WIP/37_AespaBracketedCamera/AespaBracketedCamera/.build/arm64-apple-macosx/debug/AespaBracketedCamera.build/AespaBracketedCamera-Swift.h"
+    requires objc
+}
