@@ -78,7 +78,9 @@ class AespaBracketedCamera: AespaCoreCamera {
         guard let output = core.photoOutput else {
             fatalError("No available camera output.")
         }
-        
+
+        output.isHighResolutionCaptureEnabled = true
+
         let supportsRAW = !output.availableRawPhotoFileTypes.isEmpty
         // Checks if we can take ProRaw or Raw
         let query = output.isAppleProRAWEnabled ? { AVCapturePhotoOutput.isAppleProRAWPixelFormat($0) } :
