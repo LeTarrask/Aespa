@@ -7,6 +7,9 @@ DerivedData/
 .swiftpm/config/registries.json
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 .netrc
+.build/
+.swiftpm/
+.swiftlint.yml
 
 Scripts/cuckoo_generator
 Scripts/run
